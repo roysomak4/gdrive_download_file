@@ -7,7 +7,22 @@ download_file() {
     rm -f /tmp/cookies.txt
 }
 
+download_dir() {
+    downloads_dir=$1
+    if [ -d $downloads_dir ]
+    then
+        echo "$downloads_dir found."
+    else
+        echo "$downloads_dir does NOT found."
+        echo "Creating $downloads_dir..."
+        mkdir -p $downloads_dir
+        echo "$downloads_dir created."
+    fi
+}
+
 # parse commandline input
 file_id=$1
-output_file_name=$2
+downloads_dir=$HOME/Downloads
+output_file_name=$downloads_dir/$2
+download_dir $downloads_dir
 download_file $file_id $output_file_name
