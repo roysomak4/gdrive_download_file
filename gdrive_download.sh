@@ -24,5 +24,11 @@ download_dir() {
 file_id=$1
 downloads_dir=$HOME/Downloads
 output_file_name=$downloads_dir/$2
+# check for empty inputs
+if [ -z "$1" ] || [ -z "$2" ]
+then
+    echo "Missing arguments. Exiting application."
+    exit 1
+fi
 download_dir $downloads_dir
 download_file $file_id $output_file_name
